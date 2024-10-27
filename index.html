@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Interface</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="search-container">
+        <div class="dropdown">
+            <button class="dropbtn" id="dropdownButton">Select Category</button>
+            <div class="dropdown-content" id="dropdownContent">
+                <a href="#" onclick="selectCategory('Everything')">Everything</a>
+                <a href="#" onclick="selectCategory('Software Development')">Software Development</a>
+                <a href="#" onclick="selectCategory('Web Development')">Web Development</a>
+                <a href="#" onclick="selectCategory('Data Analyst')">Data Analyst</a>
+                <a href="#" onclick="selectCategory('IT Consultant')">IT Consultant</a>
+                <a href="#" onclick="selectCategory('Network Administrator')">Network Administrator</a>
+            </div>
+        </div>
+        <input type="text" id="searchInput" placeholder="Enter your search query...">
+        <button id="searchButton">Search</button>
+    </div>
+
+    <script>
+        // Toggle dropdown
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownContent = document.getElementById('dropdownContent');
+
+        dropdownButton.onclick = function() {
+            dropdownContent.classList.toggle('show');
+        };
+
+        // Close dropdown if clicked outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                if (dropdownContent.classList.contains('show')) {
+                    dropdownContent.classList.remove('show');
+                }
+            }
+        };
+
+        // Select category
+        function selectCategory(category) {
+            dropdownButton.textContent = category;
+            dropdownContent.classList.remove('show');
+        }
+
+        // Search button action
+        document.getElementById('searchButton').onclick = function() {
+            const query = document.getElementById('searchInput').value;
+            const category = dropdownButton.textContent;
+            alert(Searching for "${query}" in "${category}" category.);
+        };
+    </script>
+</body>
+</html>
